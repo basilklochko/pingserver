@@ -1,0 +1,7 @@
+node_modules/
+dist/*
+!dist/client/
+dist/client/*.map
+dist/client/*.js
+!dist/client/vs.js
+!dist/client/vs.min.js

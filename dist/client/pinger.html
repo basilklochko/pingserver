@@ -1,0 +1,79 @@
+<div vs-component="Pinger">
+    <nav class="navbar navbar-dark bg-dark fixed-bottom">
+        <div class="col-6 text-left">
+            <button type="button" class="btn btn-dark animated bounceInUp" vs-event-click="onSettingsOpen()" vs-hide="!isSettingsButtonHidden"><i
+                    class="fas fa-cog"></i></button>
+            <button type="button" class="btn btn-dark animated bounceInUp" vs-event-click="onServerOpen()" vs-hide="!isSettingsButtonHidden"><span
+                    vs-model="server.name"></span></button>
+        </div>
+        <small class="col-6 text-right text-white">
+            Proudly built with VerySimple.js, 2019
+        </small>
+    </nav>
+
+    <div class="row charts">
+    </div>
+
+    <div class="card server-overlay animated bounceInUp text-white bg-dark mb-3" vs-hide="!isServerOverlayHidden">
+        <div class="card-header">
+            <i class="fas fa-server"></i> Select Server
+        </div>
+        <div class="card-body">
+            <a class="btn btn-dark btn-block disabled" href="javascript:void(0)" vs-model="server.name"></a>
+            <div vs-for="item in selectableServers" style="overflow-y: auto; max-height: 250px;">
+                <a class="btn btn-dark btn-block" vs-event-click="onServerChange(item.id)" href="javascript:void(0)"
+                    vs-model="item.name"></a>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="text-right">
+                <a href="#" class="btn btn-dark" vs-event-click="onServerClose()"><i class="fas fa-times"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="card settings-overlay animated bounceInUp text-white bg-dark mb-3" vs-hide="!isSettingsOverlayHidden">
+        <div class="card-header">
+            <i class="fas fa-cog"></i> Configuration
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-6">
+                    <span vas-model="server.name"></span>Server <a href="javascript:void(0)" vs-event-click="onNewServer()"
+                        vs-hide="isNewServer"><i class="fas fa-plus" style="color:green"></i></a><br>
+                    <div vs-hide="!isNewServer">
+                        <input class="form-control" type="text" vs-model="newServer" placeholder="New Server Name" />
+                        <a href="#" class="btn btn-dark" vs-event-click="onNewServerSave()"><i class="far fa-save"></i></a>
+                        <a href="#" class="btn btn-dark" vs-event-click="onNewServerCancel()"><i class="fas fa-ban"></i></a>
+                    </div>
+                    <div vs-for="item in servers" style="overflow-y: auto; max-height: 200px;">
+                        <a vs-event-click="onServerDelete(item.id)" href="javascript:void(0)"><i class="far fa-trash-alt"
+                                style="color:red"></i></a>
+                        <a class="btn btn-dark" vs-event-click="onServer(item.id)" href="javascript:void(0)" vs-model="item.name"></a>
+                    </div>
+                </div>
+                <div class="col-6" vs-hide="!isServerSelected">
+                    <span vs-model="selectedServer"></span> IPs <a href="javascript:void(0)" vs-event-click="onNewIP()"><i
+                            class="fas fa-plus" style="color:green"></i></a>
+                    <div vs-hide="!isNewIP">
+                        <input class="form-control" type="text" vs-model="ip" placeholder="New IP" />
+                        <a href="#" class="btn btn-dark" vs-event-click="onNewIPSave()"><i class="far fa-save"></i></a>
+                        <a href="#" class="btn btn-dark" vs-event-click="onNewIPCancel()"><i class="fas fa-ban"></i></a>
+                    </div>
+                    <div vs-for="item in ips" style="overflow-y: auto; max-height: 200px;">
+                        <a vs-event-click="onIPDelete(item)" href="javascript:void(0)"><i class="far fa-trash-alt"
+                                style="color:red"></i></a>
+                        <span vs-model="item"></span>
+                    </div>
+                </div>
+                <br>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="text-right">
+                <a href="#" class="btn btn-dark" vs-event-click="onSettingsSave()"><i class="fas fa-save"></i></a>
+                <a href="#" class="btn btn-dark" vs-event-click="onSettingsClose()"><i class="fas fa-times"></i></a>
+            </div>
+        </div>
+    </div>
+</div>

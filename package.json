@@ -1,0 +1,24 @@
+{
+  "name": "ping-server",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "server": "tsc && node ./dist/server/app",
+    "client": "tsc -p dist/client -w",
+    "start": "concurrently \"tsc -p dist/client -w\" \"tsc && node ./dist/server/app\""
+  },
+  "private": true,
+  "dependencies": {
+    "@types/node": "^6.0.117",
+    "body-parser": "^1.18.3",
+    "concurrently": "^3.5.0",
+    "express": "^4.16.3",
+    "express-ws": "^4.0.0",
+    "ping": "^0.2.2",
+    "readline": "^1.3.0",
+    "ts-node": "~3.2.0",
+    "tslint": "~5.3.2",
+    "typescript": "~2.3.3"
+  },
+  "devDependencies": {}
+}
